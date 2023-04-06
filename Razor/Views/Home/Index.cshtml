@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "Home page";
+    string nome = "Il tuo nome";
+    string cognome = "Il tuo cognome";
+    string nomeCompleto = nome + " " + cognome;
+
+    int n = 10;
+    int somma = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        somma += i;
+    }
+
+    string frase = "nel mezzo del cammin di nostra vita";
+    int conteggio = 0;
+    foreach (char c in frase)
+    {
+        if (c == 'a')
+        {
+            conteggio++;
+        }
+    }
+
+    List<int> numeri = new List<int>();
+    Random rnd = new Random();
+    for (int i = 0; i < 20; i++)
+    {
+        numeri.Add(rnd.Next(1, 91));
+    }
+    List<int> numeriCompresi = new List<int>();
+    foreach (int numero in numeri)
+    {
+        if (numero >= 20 && numero <= 70)
+        {
+            numeriCompresi.Add(numero);
+        }
+    }
+
+    DateTime now = DateTime.Now;
+    string dataOra = now.ToString("yyyy-MM-dd HH:mm:ss");
+
+    DateTime oggi = DateTime.Today;
+    DateTime setteGiorniFa = oggi.AddDays(-7);
+    string giornoSettimanaOggi = oggi.ToString("dddd");
+    string giornoSettimanaFraUnAnno = oggi.AddYears(1).ToString("dddd");
+}
+
+<h1>Risultati:</h1>
+
+<h2>@nomeCompleto</h2>
+
+<p>Somma dei numeri da 1 a 10: <span>@somma</span></p>
+
+<p>Numero  della lettera 'a' nella frase "nel mezzo del cammin di nostra vita": @conteggio</p>
+
+<p>Numeri compresi tra 20 e 70: @string.Join(", ", numeriCompresi)</p>
+
+<p>Data e ora attuale: @dataOra</p>
+
+<p>Data di 7 giorni fa: @setteGiorniFa.ToString("yyyy-MM-dd")</p>
+
+<p>Giorno della settimana oggi: @giornoSettimanaOggi</p>
+
+<p>Giorno della settimana fra un anno: @giornoSettimanaFraUnAnno</p>
