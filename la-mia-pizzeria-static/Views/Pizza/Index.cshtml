@@ -1,11 +1,11 @@
-﻿@model Pizza[]
+﻿@model PizzaModel[]
 
 @{
-    ViewData["Title"] = "My pizzas";
+    ViewData["Title"] = "Pizze";
     var pizze = Model;
+   
 }
-<div class=" container-fluid">
-    <div class="row">
+    <div>
         @foreach (var pizza in pizze)
         {
             @await Html.PartialAsync("_Card", pizza)
@@ -13,4 +13,3 @@
     </div>
 
 
-</div>
