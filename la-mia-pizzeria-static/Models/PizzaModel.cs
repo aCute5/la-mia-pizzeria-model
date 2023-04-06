@@ -2,16 +2,12 @@
 {
     public class PizzaModel
     {
+        public int Id { get; set; } 
         public string? Nome { get; set; }
 
         public string? Descrizione { get; set; }
 
         public int Price { get; set; }
-        public PizzaModel(string? nome, string? descrizione, int price)
-        {
-            Nome = nome;
-            Descrizione = descrizione;
-            Price = price;
-        }
+       
     }
 }

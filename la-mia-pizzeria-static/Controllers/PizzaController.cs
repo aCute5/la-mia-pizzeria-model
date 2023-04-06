@@ -1,5 +1,5 @@
-﻿using la_mia_pizzeria_static.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using la_mia_pizzeria_static.Models;
 
 namespace la_mia_pizzeria_static.Controllers
 {
@@ -7,14 +7,24 @@ namespace la_mia_pizzeria_static.Controllers
     {
         public IActionResult Index()
         {
-            List<PizzaModel> pizze = new List<PizzaModel>
-            {
-                new PizzaModel("Margherita", "Mozzarella, Pomodoro", 5),
-                new PizzaModel("Marinara", "Pomodoro, Origano", 3),
-                new PizzaModel("Viennese","Pomodoro Mozzarella Wurstel", 6),
+            using var ctx = new PizzaContext();
+            var pizzas = ctx.Pizze.ToArray();
 
-            };
-            return View("Index", pizze);
+            return View(pizzas);
+
+        }
+        public IActionResult Detail(int id)
+        {
+            using var ctx = new PizzaContext();
+            var pizza = ctx.Pizze.SingleOrDefault(p => p.Id == id);
+
+            if (pizza is null)
+            {
+                return NotFound($"Pizza with id {id} not found.");
+            }
+
+            return View(pizza);
         }
     }
+
 }
